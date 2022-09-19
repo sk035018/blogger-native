@@ -2,11 +2,11 @@ import { FormControl, HStack, Modal, TextArea, useToast, WarningOutlineIcon } fr
 import { useHeaderContext } from "../../contexts/headerContext";
 import ScreenContainer from "../../shared_components/ScreenContainer";
 import Input from "../../shared_components/Input";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import Button from "../../shared_components/Button";
 import { requiredFields } from "../../utils/validations";
 import { blogMapper } from "../../constants/labelFieldMapper";
-import { createBlog } from "../../services/blog";
+import { createBlog, updateBlog } from "../../services/blog";
 import ToastRender from "../ToastRender";
 
 const initialState = {
@@ -22,7 +22,7 @@ const initialErrorState = {
 };
 
 export default () => {
-    const { showCreateBlogModal, setCreateBlogModal, stateToken, setReloadBlogs } = useHeaderContext();
+    const { showCreateBlogModal, setCreateBlogModal, stateToken, setReloadBlogs, blogToUpdate, setBlogToUpdate } = useHeaderContext();
     const [blogData, setBlogData] = useReducer((prevState, updatedState) => ({ ...prevState, ...updatedState }), initialState);
     const [errorState, setErrorState] = useReducer((prevState, updatedState) => ({ ...prevState, ...updatedState }), initialErrorState);
     const toast = useToast();
@@ -40,7 +40,15 @@ export default () => {
             setErrorState(errObj);
         } else {
             const blogPayload = { ...blogData };
-            const { data: { errMsg } } = (await createBlog(blogPayload, stateToken)) || {};
+            let blogResponse;
+
+            if (blogToUpdate) {
+                blogResponse = (await updateBlog(blogPayload, stateToken)) || { data: {} };
+            } else {
+                blogResponse = (await createBlog(blogPayload, stateToken)) || { data: {} };
+            }
+
+            const { data: { errMsg } } = blogResponse;
             if (errMsg) {
                 setErrorState({ resError: errMsg });
             } else {
@@ -48,7 +56,7 @@ export default () => {
                 setReloadBlogs(true);
                 toast.show({
                     placement: 'top',
-                    render: () => (<ToastRender>Blog Created !!!</ToastRender>)
+                    render: () => (<ToastRender>{ blogToUpdate ? 'Blog Updated !!!' : 'Blog Created !!!' }</ToastRender>)
                 });
             }
         }
@@ -58,6 +66,16 @@ export default () => {
         setBlogData(initialState);
         setErrorState(initialErrorState);
     };
+
+    useEffect(() => {
+        if (blogToUpdate) {
+            setBlogData(blogToUpdate);
+        }
+    }, [blogToUpdate]);
+
+    useEffect(() => {
+        return () => setBlogToUpdate(null);
+    }, [])
 
     return (
         <Modal isOpen={showCreateBlogModal} onClose={onClose} size='lg'>
@@ -103,8 +121,8 @@ export default () => {
                         </FormControl.ErrorMessage>
                         </FormControl>
                         <HStack justifyContent='center' mt='4' >
-                            <Button onPress={onSave} mr='3' >Save</Button>
-                            <Button onPress={onReset} >Reset</Button>
+                            <Button onPress={onSave} mr='3' >{blogToUpdate ? 'Update' : 'Save'}</Button>
+                            <Button onPress={onReset} >{blogToUpdate ? 'Cancel' : 'Reset'}</Button>
                         </HStack>
                     </ScreenContainer>
                 </Modal.Body>

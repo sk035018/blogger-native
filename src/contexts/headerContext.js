@@ -9,6 +9,7 @@ export const HeaderProvider = ({ children }) => {
     const [showCreateBlogModal, setCreateBlogModal] = useState(false);
     const [navigation, setNavigation] = useState(null);
     const [reloadBlogs, setReloadBlogs] = useState(false);
+    const [blogToUpdate, setBlogToUpdate] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -30,6 +31,8 @@ export const HeaderProvider = ({ children }) => {
                 setNavigation,
                 reloadBlogs,
                 setReloadBlogs,
+                blogToUpdate,
+                setBlogToUpdate,
             }}
         >
             {children}

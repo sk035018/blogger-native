@@ -13,7 +13,7 @@ export default () => {
     const [skip, setSkip] = useState(0);
     const [blogsList, setBlogsList] = useState([]);
 
-    const { stateToken, setTitle, reloadBlogs, setReloadBlogs } = useHeaderContext();
+    const { stateToken, setTitle, reloadBlogs, setReloadBlogs, setBlogToUpdate, setCreateBlogModal } = useHeaderContext();
     const toast = useToast();
 
     const loadMore = async () => {
@@ -69,6 +69,11 @@ export default () => {
         })();
     }, []);
 
+    const onEdit = (payload) => {
+        setBlogToUpdate({ ...payload });
+        setCreateBlogModal(true);
+    };
+
     const renderData = ({ item }) => (
         <Box borderWidth='2' mt='5' borderColor='white' borderRadius='xl' key={item._id}>
             <VStack p='2'>
@@ -77,7 +82,7 @@ export default () => {
                 <Text mt='5' w='100%' textAlign='left'>{item.body}</Text>
                 <Text italic w='100%' fontSize='14' >{`By : ${item.author.fullName}`}</Text>
                 <HStack justifyContent='space-between' mt='5' mb='1'>
-                    <Button px='2' py='1' size='sm'>Edit</Button>
+                    <Button px='2' py='1' size='sm' onPress={() => onEdit(item)}>Edit</Button>
                     <Button px='2' py='1' size='sm' onPress={() => onDelete(item._id)}>Delete</Button>
                 </HStack>
             </VStack>

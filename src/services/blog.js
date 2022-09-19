@@ -13,3 +13,7 @@ export const fetchBlogs = async (query, token) => {
 export const deleteBlog = async (id, token) => {
     return await axios.delete(`${baseURL}/blog/delete/${id}`, { headers: { Authorization: token } });
 };
+
+export const updateBlog = async (payload, token) => {
+    return await axios.put(`${baseURL}/blog/update/${payload._id}`, payload, { headers: { Authorization: token } });
+};
