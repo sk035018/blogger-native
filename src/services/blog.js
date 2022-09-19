@@ -9,3 +9,7 @@ export const fetchBlogs = async (query, token) => {
     const { skip = 0, limit = 20 } = query;
     return await axios.get(`${baseURL}/blog/getAll?skip=${skip}&limit=${limit}`, { headers: { Authorization: token } });
 };
+
+export const deleteBlog = async (id, token) => {
+    return await axios.delete(`${baseURL}/blog/delete/${id}`, { headers: { Authorization: token } });
+};

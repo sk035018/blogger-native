@@ -4,12 +4,13 @@ import { useHeaderContext } from "../contexts/headerContext";
 import { removeToken } from "../utils/storage";
 
 export default () => {
-    const { stateToken, setStateToken } = useHeaderContext();
+    const { stateToken, setStateToken, navigation } = useHeaderContext();
     const { toggleColorMode } = useColorMode();
 
     const onLogout = async () => {
         await removeToken();
         setStateToken(null);
+        navigation.navigate('SignIn');
     };
 
     const defaultMenuProps = {
@@ -23,6 +24,9 @@ export default () => {
             children: 'Home',
         },
         {
+            children: 'Profile',
+        },
+        {
             children: 'Toggle Theme',
             onPress: toggleColorMode,
             isDisabled: false,
@@ -34,7 +38,7 @@ export default () => {
     ];
 
     return (
-        <Menu p={0} bg={useColorModeValue('dark.600', 'darkBlue.900')}
+        <Menu p={0} mt='16' ml='2' bg={useColorModeValue('dark.600', 'darkBlue.900')}
             borderColor={useColorModeValue('darkBlue.900', 'dark.600')}
             borderWidth='2'
             borderBottomWidth={0}

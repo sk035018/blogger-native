@@ -22,7 +22,7 @@ const initialErrorState = {
 };
 
 export default () => {
-    const { showCreateBlogModal, setCreateBlogModal, stateToken } = useHeaderContext();
+    const { showCreateBlogModal, setCreateBlogModal, stateToken, setReloadBlogs } = useHeaderContext();
     const [blogData, setBlogData] = useReducer((prevState, updatedState) => ({ ...prevState, ...updatedState }), initialState);
     const [errorState, setErrorState] = useReducer((prevState, updatedState) => ({ ...prevState, ...updatedState }), initialErrorState);
     const toast = useToast();
@@ -45,6 +45,7 @@ export default () => {
                 setErrorState({ resError: errMsg });
             } else {
                 onClose();
+                setReloadBlogs(true);
                 toast.show({
                     placement: 'top',
                     render: () => (<ToastRender>Blog Created !!!</ToastRender>)
