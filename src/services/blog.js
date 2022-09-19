@@ -4,3 +4,8 @@ import baseURL from "../constants/baseURL";
 export const createBlog = async (payload, token) => {
     return await axios.post(`${baseURL}/blog/create`, payload, { headers: { Authorization: token } });
 };
+
+export const fetchBlogs = async (query, token) => {
+    const { skip = 0, limit = 20 } = query;
+    return await axios.get(`${baseURL}/blog/getAll?skip=${skip}&limit=${limit}`, { headers: { Authorization: token } });
+};

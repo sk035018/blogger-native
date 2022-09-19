@@ -1,7 +1,7 @@
 import { Box, ScrollView, useColorModeValue } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default ({ isScrollable, children, ...props}) => {
+export default ({ isScrollable, isInSafeArea, children, ...props}) => {
     const colorMode = useColorModeValue(props.light || 'dark.600', props.dark || 'darkBlue.900');
     if (isScrollable) {
         return (
@@ -13,11 +13,20 @@ export default ({ isScrollable, children, ...props}) => {
             </ScrollView>
         );
     }
+
+    if (isInSafeArea) {
+        return (
+            <SafeAreaView {...props}>
+                <Box bg={colorMode} {...props.boxProps} flexDir='row'>
+                    {children}
+                </Box>
+            </SafeAreaView>
+        );
+    }
+
     return (
-        <SafeAreaView {...props}>
-            <Box bg={colorMode} {...props.boxProps} flexDir='row'>
-                {children}
-            </Box>
-        </SafeAreaView>
+        <Box bg={colorMode} {...props}>
+            {children}
+        </Box>
     );
 };

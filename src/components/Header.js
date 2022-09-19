@@ -5,12 +5,19 @@ import Text from "../shared_components/Text";
 import logo from "../../assets/blog.png";
 import Menu from "./Menu";
 import CreateBlogModal from "./modals/CreateBlogModal";
+import { useEffect } from "react";
 
 export default () => {
-    const { title, setCreateBlogModal, stateToken } = useHeaderContext();
-    
+    const { title, setCreateBlogModal, stateToken, navigation } = useHeaderContext();
+
+    useEffect(() => {
+        if (stateToken && navigation) {
+            navigation.navigate('Home');
+        }
+    }, [stateToken, navigation]);
+
     return (
-        <ScreenContainer boxProps={{
+        <ScreenContainer isInSafeArea boxProps={{
             h: '50',
             alignItems: 'center',
             justifyContent: 'space-between',

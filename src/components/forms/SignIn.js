@@ -24,7 +24,7 @@ const initialErrorState = {
     resError: null,
 };
 
-export default () => {
+export default ({ navigation }) => {
     const [signInDetails, setSignInDetails] = useReducer(
         (prevState, updatedFields) => ({ ...prevState, ...updatedFields}), initialState
     );
@@ -33,8 +33,12 @@ export default () => {
         (prevState, updatedFields) => ({ ...prevState, ...updatedFields}), initialErrorState
     );
     
-    const { setTitle, setStateToken } = useHeaderContext();
+    const { setTitle, setStateToken, setNavigation } = useHeaderContext();
     const toast = useToast();
+
+    useEffect(() => {
+        setNavigation(navigation);
+    }, [navigation]);
 
     const onSubmit = async () => {
         setErrorState(initialErrorState);
@@ -63,6 +67,7 @@ export default () => {
                         placement: 'top',
                         render: () => (<ToastRender>Successfully Signed In !!!</ToastRender>)
                     });
+                    navigation.navigate('Home');
                 }
             } catch (error) {
                 console.error(error);
