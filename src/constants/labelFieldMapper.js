@@ -5,3 +5,9 @@ export const signUpMapper = {
     password: 'Password',
     confirmPassword: 'Confirm Password',
 };
+
+export const blogMapper = {
+    title: 'Title',
+    subTitle: 'Sub Title',
+    body: 'Body',
+};

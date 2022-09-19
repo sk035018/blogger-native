@@ -4,9 +4,10 @@ import ScreenContainer from "../shared_components/ScreenContainer";
 import Text from "../shared_components/Text";
 import logo from "../../assets/blog.png";
 import Menu from "./Menu";
+import CreateBlogModal from "./modals/CreateBlogModal";
 
 export default () => {
-    const { title } = useHeaderContext();
+    const { title, setCreateBlogModal, stateToken } = useHeaderContext();
     
     return (
         <ScreenContainer boxProps={{
@@ -23,13 +24,12 @@ export default () => {
                 <Text ml='5' fontSize='xl' fontWeight='bold' >{title}</Text>
             </HStack>
             <HStack alignItems={'center'}>
-                <Tooltip label="Create Blog" openDelay={500}>
-                    <Pressable mr='5' borderRadius={100} p={0} size='7' borderColor='white' borderWidth='2' bgColor={'white'}>
-                        <AddIcon size='lg' color='black' />
-                    </Pressable>
-                </Tooltip>
+                {stateToken && <Pressable mr='5' borderRadius={100} p={0} size='7' borderColor='white' borderWidth='2' bgColor={'white'} onPress={() => setCreateBlogModal(v => !v)}>
+                    <AddIcon size='lg' color='black' />
+                </Pressable>}
                 <Image source={logo} size='35' borderRadius='100' alt="Logo" />
             </HStack>
+            <CreateBlogModal />
         </ScreenContainer>
     )
 };

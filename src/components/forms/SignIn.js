@@ -81,7 +81,7 @@ export default () => {
 
 
     return (
-        <ScreenContainer flex={1} isScrollable justifyContent='center'>
+        <ScreenContainer flex={1} isScrollable >
             <Box borderColor='white' borderRadius='xl' borderWidth='4' px={2} py={5}>
                 <FormControl isRequired>
                     <VStack space={8}>

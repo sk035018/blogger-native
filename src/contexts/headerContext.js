@@ -6,6 +6,7 @@ const HeaderContext = createContext();
 export const HeaderProvider = ({ children }) => {
     const [title, setTitle] = useState('');
     const [stateToken, setStateToken] = useState(null);
+    const [showCreateBlogModal, setCreateBlogModal] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -21,6 +22,8 @@ export const HeaderProvider = ({ children }) => {
                 setTitle,
                 stateToken,
                 setStateToken,
+                showCreateBlogModal,
+                setCreateBlogModal,
             }}
         >
             {children}

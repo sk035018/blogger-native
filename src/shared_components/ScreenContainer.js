@@ -8,7 +8,7 @@ export default ({ isScrollable, children, ...props}) => {
             <ScrollView bg={colorMode} pt='30' _contentContainerStyle={{
                 justifyContent: 'center',
                 alignItems: 'center',
-            }}>
+            }} {...props}>
                 {children}
             </ScrollView>
         );
