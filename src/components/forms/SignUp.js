@@ -1,17 +1,19 @@
-import { Box, FormControl, HStack, useToast, VStack, WarningOutlineIcon } from "native-base";
 import _ from 'lodash';
+import React from 'react';
+import { Box, FormControl, HStack, useToast, VStack, WarningOutlineIcon } from 'native-base';
+import PropTypes from 'prop-types';
 import moment from 'moment';
-import { useEffect, useReducer } from "react";
-import { Link } from "@react-navigation/native";
-import Button from "../../shared_components/Button";
-import Input from "../../shared_components/Input";
-import ScreenContainer from "../../shared_components/ScreenContainer";
-import { isValidDate, requiredFields } from "../../utils/validations";
-import { createUser } from "../../services/user";
-import ToastRender from "../ToastRender";
-import { signUpMapper } from "../../constants/labelFieldMapper";
-import Text from "../../shared_components/Text";
-import { useHeaderContext } from "../../contexts/headerContext";
+import { useEffect, useReducer } from 'react';
+import { Link } from '@react-navigation/native';
+import Button from '../../shared_components/Button';
+import Input from '../../shared_components/Input';
+import ScreenContainer from '../../shared_components/ScreenContainer';
+import { isValidDate, requiredFields } from '../../utils/validations';
+import { createUser } from '../../services/user';
+import ToastRender from '../ToastRender';
+import { signUpMapper } from '../../constants/labelFieldMapper';
+import Text from '../../shared_components/Text';
+import { useHeaderContext } from '../../contexts/headerContext';
 
 const initialState = {
     fullName: null,
@@ -21,7 +23,7 @@ const initialState = {
     confirmPassword: null,
 };
 
-export default ({ navigation}) => {
+const SignUp = ({ navigation }) => {
     const [signUpDetails, setSignUpDetails] = useReducer(
         (prevState, updatedFields) => ({ ...prevState, ...updatedFields}), initialState
     );
@@ -96,8 +98,8 @@ export default ({ navigation}) => {
                             <VStack w='60%'>
                                 <Input
                                     value={signUpDetails.fullName}
-                                    placeholder="Full Name"
-                                    nativeID="fullName"
+                                    placeholder='Full Name'
+                                    nativeID='fullName'
                                     onChangeText={value => setSignUpDetails({ fullName: value})}
                                 />
                                 <FormControl.ErrorMessage isInvalid leftIcon={<WarningOutlineIcon size='xs'/>}>
@@ -112,8 +114,8 @@ export default ({ navigation}) => {
                             <VStack w='60%'>
                                 <Input
                                     value={signUpDetails.email}
-                                    placeholder="Email Id"
-                                    nativeID="email"
+                                    placeholder='Email Id'
+                                    nativeID='email'
                                     onChangeText={value => setSignUpDetails({ email: value})}
                                 />
                                 <FormControl.ErrorMessage isInvalid leftIcon={<WarningOutlineIcon size='xs'/>}>
@@ -128,8 +130,8 @@ export default ({ navigation}) => {
                             <VStack w='60%'>
                                 <Input
                                     value={signUpDetails.dob}
-                                    placeholder="Date of Birth"
-                                    nativeID="dob"
+                                    placeholder='Date of Birth'
+                                    nativeID='dob'
                                     onChangeText={value => setSignUpDetails({ dob: value})}
                                 />
                                 <FormControl.HelperText>
@@ -147,9 +149,9 @@ export default ({ navigation}) => {
                             <VStack w='60%'>
                             <Input
                                 value={signUpDetails.password}
-                                placeholder="Password"
-                                nativeID="password"
-                                type="password"
+                                placeholder='Password'
+                                nativeID='password'
+                                type='password'
                                 onChangeText={value => setSignUpDetails({ password: value})}
                             />
                                 <FormControl.ErrorMessage isInvalid leftIcon={<WarningOutlineIcon size='xs'/>}>
@@ -164,9 +166,9 @@ export default ({ navigation}) => {
                             <VStack w='60%'>
                                 <Input
                                     value={signUpDetails.confirmPassword}
-                                    placeholder="Confirm Password"
-                                    nativeID="confirmPassword"
-                                    type="password"
+                                    placeholder='Confirm Password'
+                                    nativeID='confirmPassword'
+                                    type='password'
                                     onChangeText={value => setSignUpDetails({ confirmPassword: value})}
                                 />
                                 <FormControl.ErrorMessage isInvalid leftIcon={<WarningOutlineIcon size='xs'/>}>
@@ -196,3 +198,9 @@ export default ({ navigation}) => {
         </ScreenContainer>
     );
 };
+
+SignUp.propTypes = {
+    navigation: PropTypes.any,
+};
+
+export default SignUp;

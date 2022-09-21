@@ -1,7 +1,9 @@
-import { Box, ScrollView, useColorModeValue } from "native-base";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Box, ScrollView, useColorModeValue } from 'native-base';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default ({ isScrollable, isInSafeArea, children, ...props}) => {
+const ScreenContainer = ({ isScrollable, isInSafeArea, children, ...props}) => {
     const colorMode = useColorModeValue(props.light || 'dark.600', props.dark || 'darkBlue.900');
     if (isScrollable) {
         return (
@@ -30,3 +32,14 @@ export default ({ isScrollable, isInSafeArea, children, ...props}) => {
         </Box>
     );
 };
+
+ScreenContainer.propTypes = {
+    isScrollable: PropTypes.bool,
+    isInSafeArea: PropTypes.bool,
+    children: PropTypes.any,
+    light: PropTypes.string,
+    dark: PropTypes.string,
+    boxProps: PropTypes.any,
+};
+
+export default ScreenContainer;

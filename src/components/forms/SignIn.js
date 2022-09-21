@@ -1,17 +1,18 @@
-import { Box, FormControl, HStack, useToast, VStack, WarningOutlineIcon } from "native-base";
-import _ from 'lodash';
-import { useEffect, useReducer } from "react";
-import { Link } from "@react-navigation/native";
-import Button from "../../shared_components/Button";
-import Input from "../../shared_components/Input";
-import ScreenContainer from "../../shared_components/ScreenContainer";
-import { requiredFields } from "../../utils/validations";
-import ToastRender from "../ToastRender";
-import { login } from "../../services/login";
-import { setToken } from "../../utils/storage";
-import { signUpMapper } from "../../constants/labelFieldMapper";
-import Text from "../../shared_components/Text";
-import { useHeaderContext } from "../../contexts/headerContext";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Box, FormControl, HStack, useToast, VStack, WarningOutlineIcon } from 'native-base';
+import { useEffect, useReducer } from 'react';
+import { Link } from '@react-navigation/native';
+import Button from '../../shared_components/Button';
+import Input from '../../shared_components/Input';
+import ScreenContainer from '../../shared_components/ScreenContainer';
+import { requiredFields } from '../../utils/validations';
+import ToastRender from '../ToastRender';
+import { login } from '../../services/login';
+import { setToken } from '../../utils/storage';
+import { signUpMapper } from '../../constants/labelFieldMapper';
+import Text from '../../shared_components/Text';
+import { useHeaderContext } from '../../contexts/headerContext';
 
 const initialState = {
     email: null,
@@ -24,7 +25,7 @@ const initialErrorState = {
     resError: null,
 };
 
-export default ({ navigation }) => {
+ const SignIn = ({ navigation }) => {
     const [signInDetails, setSignInDetails] = useReducer(
         (prevState, updatedFields) => ({ ...prevState, ...updatedFields}), initialState
     );
@@ -97,8 +98,8 @@ export default ({ navigation }) => {
                             <VStack w='60%'>
                                 <Input
                                     value={signInDetails.email}
-                                    placeholder="Email Id"
-                                    nativeID="email"
+                                    placeholder='Email Id'
+                                    nativeID='email'
                                     onChangeText={value => setSignInDetails({ email: value})}
                                 />
                                 <FormControl.ErrorMessage isInvalid leftIcon={<WarningOutlineIcon size='xs'/>}>
@@ -113,9 +114,9 @@ export default ({ navigation }) => {
                             <VStack w='60%'>
                             <Input
                                 value={signInDetails.password}
-                                placeholder="Password"
-                                nativeID="password"
-                                type="password"
+                                placeholder='Password'
+                                nativeID='password'
+                                type='password'
                                 onChangeText={value => setSignInDetails({ password: value})}
                             />
                                 <FormControl.ErrorMessage isInvalid leftIcon={<WarningOutlineIcon size='xs'/>}>
@@ -147,7 +148,7 @@ export default ({ navigation }) => {
                             to={{ screen: 'SignUp' }}
                         >
                             <Text textDecorationLine='underline'>
-                                Didn't Signed Up yet? Sign Up
+                                {`Didn't Signed Up yet? Sign Up`}
                             </Text>
                         </Link>
                     </VStack>
@@ -156,3 +157,9 @@ export default ({ navigation }) => {
         </ScreenContainer>
     );
 };
+
+SignIn.propTypes = {
+    navigation: PropTypes.any,
+}
+
+export default SignIn;

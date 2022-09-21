@@ -1,4 +1,4 @@
-import { useColorModeValue, useContrastText } from "native-base";
+import { useColorModeValue, useContrastText } from 'native-base';
 
 export const useAppColors = ({ light = 'primary.700', dark = 'coolGray.400' } = {}) => {
     const darkColorContrast = useContrastText(light);

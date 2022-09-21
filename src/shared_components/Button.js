@@ -1,15 +1,17 @@
-import { Button } from "native-base";
-import { useAppColors } from "../utils/appColors";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Button } from 'native-base';
+import { useAppColors } from '../utils/appColors';
 
-export default (props = {}) => {
+const CustomButton = ({ children, ...props }) => {
     const { bgColorMode, textColorMode } = useAppColors();
     return (
         <Button
             px={5}
             py={2}
             mx={5}
-            size="md"
-            variant="outline"
+            size='md'
+            variant='outline'
             bg={bgColorMode}
             _text={{
                 color: textColorMode,
@@ -19,7 +21,13 @@ export default (props = {}) => {
             borderWidth='4'
             {...props}
         >
-            {props.children}
+            {children}
         </Button>
     );
 };
+
+CustomButton.propTypes = {
+    children: PropTypes.any,
+};
+
+export default CustomButton;

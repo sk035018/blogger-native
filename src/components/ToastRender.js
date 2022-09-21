@@ -1,6 +1,8 @@
-import { Box, useColorModeValue } from "native-base";
+import React from 'react';
+import { Box, useColorModeValue } from 'native-base';
+import PropTypes from 'prop-types';
 
-export default ({ children, isError }) => {
+const ToastRenderer = ({ children, isError }) => {
     return (
         <Box 
             bgColor={useColorModeValue(isError ? 'error.500' : 'success.500', isError ? 'error.800' : 'success.800')}
@@ -20,3 +22,10 @@ export default ({ children, isError }) => {
         </Box>
     )
 };
+
+ToastRenderer.propTypes = {
+    children: PropTypes.any,
+    isError: PropTypes.bool,
+};
+
+export default ToastRenderer;

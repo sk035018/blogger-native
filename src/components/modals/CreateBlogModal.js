@@ -1,13 +1,14 @@
-import { FormControl, HStack, Modal, TextArea, useToast, WarningOutlineIcon } from "native-base";
-import { useHeaderContext } from "../../contexts/headerContext";
-import ScreenContainer from "../../shared_components/ScreenContainer";
-import Input from "../../shared_components/Input";
-import { useEffect, useReducer } from "react";
-import Button from "../../shared_components/Button";
-import { requiredFields } from "../../utils/validations";
-import { blogMapper } from "../../constants/labelFieldMapper";
-import { createBlog, updateBlog } from "../../services/blog";
-import ToastRender from "../ToastRender";
+import React from 'react';
+import { FormControl, HStack, Modal, TextArea, useToast, WarningOutlineIcon } from 'native-base';
+import { useHeaderContext } from '../../contexts/headerContext';
+import ScreenContainer from '../../shared_components/ScreenContainer';
+import Input from '../../shared_components/Input';
+import { useEffect, useReducer } from 'react';
+import Button from '../../shared_components/Button';
+import { requiredFields } from '../../utils/validations';
+import { blogMapper } from '../../constants/labelFieldMapper';
+import { createBlog, updateBlog } from '../../services/blog';
+import ToastRender from '../ToastRender';
 
 const initialState = {
     title: null,
@@ -21,7 +22,7 @@ const initialErrorState = {
     resError: null,
 };
 
-export default () => {
+const CreateBlogModal = () => {
     const { showCreateBlogModal, setCreateBlogModal, stateToken, setReloadBlogs, blogToUpdate, setBlogToUpdate } = useHeaderContext();
     const [blogData, setBlogData] = useReducer((prevState, updatedState) => ({ ...prevState, ...updatedState }), initialState);
     const [errorState, setErrorState] = useReducer((prevState, updatedState) => ({ ...prevState, ...updatedState }), initialErrorState);
@@ -130,3 +131,5 @@ export default () => {
         </Modal>
     )
 };
+
+export default CreateBlogModal;

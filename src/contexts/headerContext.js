@@ -1,5 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { getToken } from "../utils/storage";
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { getToken } from '../utils/storage';
 
 const HeaderContext = createContext();
 
@@ -38,6 +39,10 @@ export const HeaderProvider = ({ children }) => {
             {children}
         </HeaderContext.Provider>
     );
+};
+
+HeaderProvider.propTypes = {
+    children: PropTypes.any,
 };
 
 export const useHeaderContext = () => useContext(HeaderContext);

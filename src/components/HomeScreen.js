@@ -1,15 +1,16 @@
-import _ from "lodash";
-import { Box, FlatList, HStack, useToast, VStack } from "native-base";
-import { useEffect, useState } from "react";
-import { useHeaderContext } from "../contexts/headerContext";
-import { deleteBlog, fetchBlogs } from "../services/blog";
-import Button from "../shared_components/Button";
-import ScreenContainer from "../shared_components/ScreenContainer";
-import Text from "../shared_components/Text";
-import ToastRender from "./ToastRender";
+import _ from 'lodash';
+import React from 'react';
+import { Box, FlatList, HStack, useToast, VStack } from 'native-base';
+import { useEffect, useState } from 'react';
+import { useHeaderContext } from '../contexts/headerContext';
+import { deleteBlog, fetchBlogs } from '../services/blog';
+import Button from '../shared_components/Button';
+import ScreenContainer from '../shared_components/ScreenContainer';
+import Text from '../shared_components/Text';
+import ToastRender from './ToastRender';
 
 const limit = 20;
-export default () => {
+const HomeScreen = () => {
     const [skip, setSkip] = useState(0);
     const [blogsList, setBlogsList] = useState([]);
 
@@ -101,3 +102,5 @@ export default () => {
         </ScreenContainer>
     )
 };
+
+export default HomeScreen;

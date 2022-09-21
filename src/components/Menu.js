@@ -1,9 +1,10 @@
-import { HamburgerIcon, Menu, Pressable, useColorMode, useColorModeValue } from "native-base";
 import _ from 'lodash';
-import { useHeaderContext } from "../contexts/headerContext";
-import { removeToken } from "../utils/storage";
+import React from 'react';
+import { HamburgerIcon, Menu, Pressable, useColorMode, useColorModeValue } from 'native-base';
+import { useHeaderContext } from '../contexts/headerContext';
+import { removeToken } from '../utils/storage';
 
-export default () => {
+const AppMenu = () => {
     const { stateToken, setStateToken, navigation } = useHeaderContext();
     const { toggleColorMode } = useColorMode();
 
@@ -44,7 +45,7 @@ export default () => {
             borderBottomWidth={0}
             placement='top'
             trigger={triggerProps => (
-                <Pressable accessibilityLabel="More options menu" {...triggerProps}>
+                <Pressable accessibilityLabel='More options menu' {...triggerProps}>
                     <HamburgerIcon size='lg' color={useColorModeValue('black', 'white')} />
                 </Pressable>
         )}>
@@ -53,4 +54,6 @@ export default () => {
             ))}
         </Menu>
       );
-  }
+  };
+
+export default AppMenu;

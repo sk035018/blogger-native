@@ -1,6 +1,8 @@
-import { Text, useColorModeValue, useContrastText } from "native-base";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Text, useColorModeValue, useContrastText } from 'native-base';
 
-export default (props = {}) => {
+const CustomText = ({ children, ...props }) => {
     const darkColorContrast = useContrastText('primary.700');
     const lightColorContrast = useContrastText('coolGray.400');
 
@@ -10,7 +12,13 @@ export default (props = {}) => {
             textAlign='right'
             {...props}
         >
-            {props.children}
+            {children}
         </Text>
     );
 };
+
+CustomText.propTypes = {
+    children: PropTypes.ant,
+};
+
+export default CustomText;

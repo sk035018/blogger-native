@@ -1,3 +1,4 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -10,21 +11,22 @@ export default function App() {
   const colorModeManager = {
     get: async () => {
       try {
-        let val = await AsyncStorage.getItem("@my-app-color-mode");
-        return val === "dark" ? "dark" : "light";
+        let val = await AsyncStorage.getItem('@my-app-color-mode');
+        return val === 'dark' ? 'dark' : 'light';
       } catch (e) {
         console.log(e);
-        return "light";
+        return 'light';
       }
     },
     set: async (value) => {
       try {
-        await AsyncStorage.setItem("@my-app-color-mode", value);
+        await AsyncStorage.setItem('@my-app-color-mode', value);
       } catch (e) {
         console.log(e);
       }
     },
   };
+  
   return (
     <NavigationContainer>
       <HeaderProvider>
