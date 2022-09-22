@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "linter": "eslint ./src/.*"
+    "linter": "eslint ./src/.*",
+    "prettier": "prettier --write ./src/.*"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.10",
