@@ -7,11 +7,23 @@ import HomeScreen from './src/components/HomeScreen';
 const Stack = createNativeStackNavigator();
 
 export default function Routes() {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name='SignIn' options={{ headerShown: false }} component={SignIn} />
-            <Stack.Screen name='SignUp' options={{ headerShown: false }} component={SignUp} />
-            <Stack.Screen name='Home' options={{ headerShown: false }} component={HomeScreen} />
-        </Stack.Navigator>
-    )
-};
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SignIn"
+        options={{ headerShown: false }}
+        component={SignIn}
+      />
+      <Stack.Screen
+        name="SignUp"
+        options={{ headerShown: false }}
+        component={SignUp}
+      />
+      <Stack.Screen
+        name="Home"
+        options={{ headerShown: false }}
+        component={HomeScreen}
+      />
+    </Stack.Navigator>
+  );
+}

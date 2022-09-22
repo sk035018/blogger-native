@@ -18,7 +18,7 @@ export default function App() {
         return 'light';
       }
     },
-    set: async (value) => {
+    set: async value => {
       try {
         await AsyncStorage.setItem('@my-app-color-mode', value);
       } catch (e) {
@@ -26,14 +26,14 @@ export default function App() {
       }
     },
   };
-  
+
   return (
     <NavigationContainer>
       <HeaderProvider>
         <NativeBaseProvider colorModeManager={colorModeManager}>
           <Header />
           <Routes />
-          <StatusBar backgroundColor='white' />
+          <StatusBar backgroundColor="white" />
         </NativeBaseProvider>
       </HeaderProvider>
     </NavigationContainer>
