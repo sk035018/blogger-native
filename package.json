@@ -36,9 +36,5 @@
     "eslint-plugin-react": "^7.31.8",
     "husky": "^8.0.1",
     "prettier": "^2.7.1"
-  },
-  "private": true,
-  "repository": "https://github.com/sk035018/blogger-native.git",
-  "author": "sk035018 <shivamkumar035018@gmail.com>",
-  "license": "MIT"
+  }
 }
