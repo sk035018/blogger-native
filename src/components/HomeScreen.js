@@ -50,7 +50,7 @@ const HomeScreen = () => {
       toast.show({
         placement: 'top',
         render: () => (
-          <ToastRender isError={errMsg}>
+          <ToastRender isError={Boolean(errMsg)}>
             {errMsg ? errMsg : 'Successfully Deleted !!!'}
           </ToastRender>
         ),
@@ -109,7 +109,7 @@ const HomeScreen = () => {
           italic
           w="100%"
           fontSize="14"
-        >{`By : ${item.author.fullName}`}</Text>
+        >{item.author && `By : ${item.author.fullName}`}</Text>
         <HStack justifyContent="space-between" mt="5" mb="1">
           <Button px="2" py="1" size="sm" onPress={() => onEdit(item)}>
             Edit

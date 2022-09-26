@@ -5,7 +5,7 @@ import ScreenContainer from '../shared_components/ScreenContainer';
 import Text from '../shared_components/Text';
 import logo from '../../assets/blog.png';
 import Menu from './Menu';
-import CreateBlogModal from './modals/CreateBlogModal';
+import { CreateBlog } from './modals';
 import { useEffect } from 'react';
 
 const Header = () => {
@@ -54,7 +54,7 @@ const Header = () => {
         )}
         <Image source={logo} size="35" borderRadius="100" alt="Logo" />
       </HStack>
-      <CreateBlogModal />
+      <CreateBlog />
     </ScreenContainer>
   );
 };

@@ -18,7 +18,7 @@ const CustomText = ({ children, ...props }) => {
 };
 
 CustomText.propTypes = {
-  children: PropTypes.ant,
+  children: PropTypes.any,
 };
 
 export default CustomText;
