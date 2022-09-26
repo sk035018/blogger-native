@@ -35,7 +35,7 @@ const SignUp = ({ navigation }) => {
   const { setTitle } = useHeaderContext();
   const toast = useToast();
 
-  const onSubmit = async (values) => {
+  const onSubmit = async values => {
     const signUpPayload = _.cloneDeep(values);
     _.set(signUpPayload, 'fullName', _.trim(signUpPayload.fullName));
     _.set(signUpPayload, 'email', _.toLower(_.trim(signUpPayload.email)));
@@ -60,7 +60,15 @@ const SignUp = ({ navigation }) => {
     }
   };
 
-  const formFields = ({ handleChange, handleBlur, handleSubmit, values, errors, resetForm, touched }) => (
+  const formFields = ({
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    values,
+    errors,
+    resetForm,
+    touched,
+  }) => (
     <FormControl isRequired>
       <VStack space={8}>
         <HStack justifyContent={'space-between'}>
@@ -134,9 +142,7 @@ const SignUp = ({ navigation }) => {
           </VStack>
         </HStack>
         <HStack justifyContent={'space-between'}>
-          <FormControl.Label>
-            {signUpMapper.confirmPassword}
-          </FormControl.Label>
+          <FormControl.Label>{signUpMapper.confirmPassword}</FormControl.Label>
           <VStack w="60%">
             <Input
               value={values.confirmPassword}
@@ -158,9 +164,7 @@ const SignUp = ({ navigation }) => {
           <Button onPress={resetForm}>Reset</Button>
         </HStack>
         <Link to={{ screen: 'SignIn' }} style={{ textAlign: 'right' }}>
-          <Text textDecorationLine="underline">
-            Already Signed Up? Sign In
-          </Text>
+          <Text textDecorationLine="underline">Already Signed Up? Sign In</Text>
         </Link>
       </VStack>
     </FormControl>
@@ -169,11 +173,11 @@ const SignUp = ({ navigation }) => {
   useEffect(() => {
     setTitle('Sign Up');
   }, []);
-  
+
   return (
     <ScreenContainer flex={1} isScrollable>
       <Box borderColor="white" borderRadius="xl" borderWidth="4" px={2} py={5}>
-        <FormBase 
+        <FormBase
           initialValues={initialState}
           onSubmit={onSubmit}
           validate={validate}

@@ -43,7 +43,7 @@ const CreateBlog = () => {
     setBlogToUpdate(null);
   };
 
-  const onSubmit = async (blogData) => {
+  const onSubmit = async blogData => {
     const blogPayload = _.cloneDeep(blogData);
     let blogResponse;
 
@@ -76,7 +76,15 @@ const CreateBlog = () => {
     }
   };
 
-  const formFields = ({ handleChange, handleBlur, handleSubmit, values, errors, resetForm, touched }) => (
+  const formFields = ({
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    values,
+    errors,
+    resetForm,
+    touched,
+  }) => (
     <FormControl isRequired>
       <FormControl.Label>{blogMapper.title}</FormControl.Label>
       <Input
@@ -138,10 +146,12 @@ const CreateBlog = () => {
     <Modal isOpen={showCreateBlogModal} onClose={onClose} size="lg">
       <Modal.Content>
         <Modal.CloseButton />
-        <Modal.Header>{ blogToUpdate ? 'Edit Blog' : 'Create New Blog'}</Modal.Header>
+        <Modal.Header>
+          {blogToUpdate ? 'Edit Blog' : 'Create New Blog'}
+        </Modal.Header>
         <Modal.Body>
           <ScreenContainer isScrollable p="3" pt="5" borderRadius="10">
-            <FormBase 
+            <FormBase
               initialValues={blogToUpdate || initialState}
               onSubmit={onSubmit}
               validate={validate}

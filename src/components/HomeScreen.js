@@ -105,11 +105,9 @@ const HomeScreen = () => {
         <Text mt="5" w="100%" textAlign="left">
           {item.body}
         </Text>
-        <Text
-          italic
-          w="100%"
-          fontSize="14"
-        >{item.author && `By : ${item.author.fullName}`}</Text>
+        <Text italic w="100%" fontSize="14">
+          {item.author && `By : ${item.author.fullName}`}
+        </Text>
         <HStack justifyContent="space-between" mt="5" mb="1">
           <Button px="2" py="1" size="sm" onPress={() => onEdit(item)}>
             Edit

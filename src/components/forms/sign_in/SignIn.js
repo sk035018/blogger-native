@@ -38,7 +38,7 @@ const SignIn = ({ navigation }) => {
     setNavigation(navigation);
   }, [navigation]);
 
-  const onSubmit = async (signInDetails) => {
+  const onSubmit = async signInDetails => {
     try {
       const userPayload = _.cloneDeep(signInDetails);
       const {
@@ -65,66 +65,74 @@ const SignIn = ({ navigation }) => {
     setTitle('Sign In');
   }, []);
 
-  const formFields = ({ handleChange, handleBlur, handleSubmit, values, errors, resetForm, touched }) => (
+  const formFields = ({
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    values,
+    errors,
+    resetForm,
+    touched,
+  }) => (
     <FormControl isRequired>
-          <VStack space={8}>
-            <HStack justifyContent={'space-between'}>
-              <FormControl.Label>{signUpMapper.email}</FormControl.Label>
-              <VStack w="60%">
-                <Input
-                  value={values.email}
-                  placeholder="Email Id"
-                  onChangeText={handleChange('email')}
-                  onBlur={handleBlur('email')}
-                />
-                <FormControl.ErrorMessage
-                  isInvalid
-                  leftIcon={<WarningOutlineIcon size="xs" />}
-                >
-                  {touched.email && errors.email}
-                </FormControl.ErrorMessage>
-              </VStack>
-            </HStack>
-            <HStack justifyContent={'space-between'}>
-              <FormControl.Label>{signUpMapper.password}</FormControl.Label>
-              <VStack w="60%">
-                <Input
-                  value={values.password}
-                  placeholder="Password"
-                  type="password"
-                  onChangeText={handleChange('password')}
-                  onBlur={handleBlur('password')}
-                />
-                <FormControl.ErrorMessage
-                  isInvalid
-                  leftIcon={<WarningOutlineIcon size="xs" />}
-                >
-                  {touched.password && errors.password}
-                </FormControl.ErrorMessage>
-              </VStack>
-            </HStack>
+      <VStack space={8}>
+        <HStack justifyContent={'space-between'}>
+          <FormControl.Label>{signUpMapper.email}</FormControl.Label>
+          <VStack w="60%">
+            <Input
+              value={values.email}
+              placeholder="Email Id"
+              onChangeText={handleChange('email')}
+              onBlur={handleBlur('email')}
+            />
             <FormControl.ErrorMessage
-              alignItems={'center'}
               isInvalid
-              leftIcon={<WarningOutlineIcon size="md" />}
-              _text={{
-                fontSize: 'xl',
-                fontWeight: 'bold',
-              }}
+              leftIcon={<WarningOutlineIcon size="xs" />}
             >
-              {resError}
+              {touched.email && errors.email}
             </FormControl.ErrorMessage>
-            <HStack justifyContent={'center'}>
-              <Button onPress={handleSubmit}>Sign In</Button>
-              <Button onPress={resetForm}>Reset</Button>
-            </HStack>
-            <Link style={{ textAlign: 'right' }} to={{ screen: 'SignUp' }}>
-              <Text textDecorationLine="underline">
-                {`Didn't Signed Up yet? Sign Up`}
-              </Text>
-            </Link>
           </VStack>
-        </FormControl>
+        </HStack>
+        <HStack justifyContent={'space-between'}>
+          <FormControl.Label>{signUpMapper.password}</FormControl.Label>
+          <VStack w="60%">
+            <Input
+              value={values.password}
+              placeholder="Password"
+              type="password"
+              onChangeText={handleChange('password')}
+              onBlur={handleBlur('password')}
+            />
+            <FormControl.ErrorMessage
+              isInvalid
+              leftIcon={<WarningOutlineIcon size="xs" />}
+            >
+              {touched.password && errors.password}
+            </FormControl.ErrorMessage>
+          </VStack>
+        </HStack>
+        <FormControl.ErrorMessage
+          alignItems={'center'}
+          isInvalid
+          leftIcon={<WarningOutlineIcon size="md" />}
+          _text={{
+            fontSize: 'xl',
+            fontWeight: 'bold',
+          }}
+        >
+          {resError}
+        </FormControl.ErrorMessage>
+        <HStack justifyContent={'center'}>
+          <Button onPress={handleSubmit}>Sign In</Button>
+          <Button onPress={resetForm}>Reset</Button>
+        </HStack>
+        <Link style={{ textAlign: 'right' }} to={{ screen: 'SignUp' }}>
+          <Text textDecorationLine="underline">
+            {`Didn't Signed Up yet? Sign Up`}
+          </Text>
+        </Link>
+      </VStack>
+    </FormControl>
   );
 
   return (
@@ -138,7 +146,7 @@ const SignIn = ({ navigation }) => {
         />
       </Box>
     </ScreenContainer>
-  )
+  );
 };
 
 SignIn.propTypes = {
