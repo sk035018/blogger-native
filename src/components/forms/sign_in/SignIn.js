@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   Box,
@@ -9,7 +9,6 @@ import {
   VStack,
   WarningOutlineIcon,
 } from 'native-base';
-import { useEffect } from 'react';
 import { Link } from '@react-navigation/native';
 import Button from '../../../shared_components/Button';
 import Input from '../../../shared_components/Input';
@@ -31,12 +30,8 @@ const initialState = {
 const SignIn = ({ navigation }) => {
   const [resError, setResError] = useState(null);
 
-  const { setTitle, setStateToken, setNavigation } = useHeaderContext();
+  const { setTitle, setStateToken } = useHeaderContext();
   const toast = useToast();
-
-  useEffect(() => {
-    setNavigation(navigation);
-  }, [navigation]);
 
   const onSubmit = async signInDetails => {
     try {

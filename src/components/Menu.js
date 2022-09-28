@@ -7,11 +7,13 @@ import {
   useColorMode,
   useColorModeValue,
 } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
 import { useHeaderContext } from '../contexts/headerContext';
 import { removeToken } from '../utils/storage';
 
 const AppMenu = () => {
-  const { stateToken, setStateToken, navigation } = useHeaderContext();
+  const navigation = useNavigation();
+  const { stateToken, setStateToken } = useHeaderContext();
   const { toggleColorMode } = useColorMode();
 
   const onLogout = async () => {

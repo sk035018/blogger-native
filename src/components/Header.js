@@ -1,5 +1,6 @@
 import React from 'react';
 import { AddIcon, HStack, Image, Pressable } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
 import { useHeaderContext } from '../contexts/headerContext';
 import ScreenContainer from '../shared_components/ScreenContainer';
 import Text from '../shared_components/Text';
@@ -9,7 +10,8 @@ import { CreateBlog } from './modals';
 import { useEffect } from 'react';
 
 const Header = () => {
-  const { title, setCreateBlogModal, stateToken, navigation } =
+  const navigation = useNavigation();
+  const { title, setCreateBlogModal, stateToken } =
     useHeaderContext();
 
   useEffect(() => {
