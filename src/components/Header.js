@@ -11,8 +11,7 @@ import { useEffect } from 'react';
 
 const Header = () => {
   const navigation = useNavigation();
-  const { title, setCreateBlogModal, stateToken } =
-    useHeaderContext();
+  const { title, setCreateBlogModal, stateToken } = useHeaderContext();
 
   useEffect(() => {
     if (stateToken && navigation) {

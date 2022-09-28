@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator  } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import SignIn from './src/components/forms/sign_in/SignIn';
@@ -14,7 +14,7 @@ const Tabs = createBottomTabNavigator();
 
 function TabBar({ state, descriptors, navigation }) {
   return (
-    <ScreenContainer isInSafeArea boxProps={{ pt: '2', pb: '2', mt: '-10'}}>
+    <ScreenContainer isInSafeArea boxProps={{ pt: '2', pb: '2', mt: '-10' }}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -57,7 +57,12 @@ function TabBar({ state, descriptors, navigation }) {
             onLongPress={onLongPress}
             style={{ flex: 1 }}
           >
-            <Text textAlign='center' textDecorationLine={isFocused ? 'underline' : 'none' } fontWeight={isFocused ? 'bold' : 'normal'} fontSize={20}>
+            <Text
+              textAlign="center"
+              textDecorationLine={isFocused ? 'underline' : 'none'}
+              fontWeight={isFocused ? 'bold' : 'normal'}
+              fontSize={20}
+            >
               {label}
             </Text>
           </TouchableOpacity>
@@ -75,16 +80,14 @@ TabBar.propTypes = {
 
 function SignTabs() {
   return (
-    <Tabs.Navigator
-      tabBar={props => <TabBar {...props} />}
-    >
+    <Tabs.Navigator tabBar={props => <TabBar {...props} />}>
       <Tabs.Screen
-        name='SignIn'
+        name="SignIn"
         component={SignIn}
         options={{ headerShown: false, title: 'Sign In' }}
       />
       <Tabs.Screen
-        name='SignUp'
+        name="SignUp"
         component={SignUp}
         options={{ headerShown: false, title: 'Sign Up' }}
       />
