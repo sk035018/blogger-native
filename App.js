@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Routes from './Routes';
 import { HeaderProvider } from './src/contexts/headerContext';
 import Header from './src/components/Header';
+import Background from './src/components/Background';
 
 export default function App() {
   const colorModeManager = {
@@ -31,6 +32,7 @@ export default function App() {
     <NavigationContainer>
       <HeaderProvider>
         <NativeBaseProvider colorModeManager={colorModeManager}>
+          <Background />
           <Header />
           <Routes />
           <StatusBar backgroundColor="white" />
